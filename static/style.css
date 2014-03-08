@@ -61,8 +61,15 @@ body {
     text-align: right;
 }
 
-#center {
+#center, tr:first-child td:first-child, tr:first-child select {
     color: #2980B9;
+}
+
+tr:first-child select {
+    border-color: #2980B9;
+}
+
+#center {
     text-align: center;
     text-indent: 1px;
     display: table-cell;

@@ -14,8 +14,14 @@ function pickBook(e) {
 
 function changeColor() {
     var color = document.getElementById('color').value;
-    document.getElementById('center').style.color = color;
-    document.getElementsByTagName('td')[0].style.color = color;
+    var center = document.getElementById('center');
+    var label = document.getElementsByTagName('td')[0];
+    var select = document.getElementsByTagName('select')[0];
+
+    center.style.color = color;
+    label.style.color = color;
+    select.style.color = color;
+    select.style.borderColor = color;
 }
 
 function updateReader(left, center, right) {
