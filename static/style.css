@@ -1,0 +1,190 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(#abcdef, #ecf0f1);
+    font-weight: bold;
+    font-family: helvetica, sans-serif;
+    color: #222;
+}
+
+.wrapper {
+    width: 80%;
+    margin: 10% auto 0;
+    text-align: center;
+}
+
+.reader {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 565px; /* this determines how big the word can be */
+    padding: 10px 0 10px;
+}
+
+.window {
+    background-color: transparent;
+    border-top: medium solid black;
+    border-bottom: medium solid black;
+    width: 83.3333%; /* 417px */
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+    position: relative;
+    font-family: courier;
+    font-size: 3em;
+    letter-spacing: 0.04em;
+}
+
+.spike {
+    position: absolute;
+    height: 10px;
+    /*left: 104px;*/
+    left: 126px;
+    border-left: medium solid black;
+}
+
+.top {
+    top: 0;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+#left {
+    display: table-cell;
+    width: 91px;
+    text-align: right;
+}
+
+#center {
+    color: #2980B9;
+    text-align: center;
+    text-indent: 1px;
+    display: table-cell;
+}
+
+#right {
+    display: table-cell;
+    text-indent: 1px;
+}
+
+
+button {
+    border: medium solid white;
+    padding: 5px 8px;
+    color: white;
+    font-family: inherit;
+}
+
+
+input[type="color"] {
+    display: inline-block;
+    border: medium solid white;
+}
+
+textarea {
+    width: 50%;
+}
+
+nav, input[type="submit"] {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+td {
+    text-align: left;
+    padding: 0;
+}
+
+td:first-child {
+    width: 70px;
+    font-size: 18px;
+}
+
+table span {
+    font-size: 13px;
+    font-style: italic;
+}
+
+select, input {
+    background-color: white;
+    border: medium solid black;
+    color: black;
+    font-family: inherit;
+}
+
+
+input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+}
+
+/* fixes zoom on select in mobile safari */
+/* src: http://stackoverflow.com/questions/6483425/ */
+select, input, textarea, button {
+    font-size: 16px;
+}
+
+button:first-of-type {
+    background-color: #27AE60;
+}
+
+button:nth-of-type(2) {
+    background-color: #E74C3C; 
+}
+
+button:hover:not(:disabled),
+select:hover:not(:disabled),
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+button:disabled,
+select:disabled {
+    background-color: gray;
+    color: black;
+    border-color: darkgray;
+    opacity: 0.5;
+}
+
+
+@media only screen and (max-width: 680px) {  
+
+    /* when window size is < 83.333% of screen */
+    .wrapper {
+        width: 90%
+    }
+    .reader {
+        width: 100%;
+    }
+    body {
+        font-size: 0.9em;
+    }
+    .spike {
+        left: 124px;
+    }
+    
+}
+
+@media only screen and (max-width: 620px) {
+    
+    body {
+        font-size: 0.6em;
+    }
+    .spike {
+        left: 84px;
+    }
+    #left {
+        width: 55px;
+    }
+}

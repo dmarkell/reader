@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
+    <title>Reader</title>
+    <link rel='stylesheet' type='text/css' href='../static/style.css'/>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="reader">
+            <div class="window">
+                <div class="spike top"></div>
+                <div class="spike bottom"></div>
+                <div id="left">Pic</div>
+                <div id="center">k</div>
+                <div id="right">&nbsp;a text.</div>
+            </div>
+        </div>
+        <nav>
+            <button id="starter" onclick="start()">START</button>
+            <button id="stopper" onclick="stop()" disabled="disabled">
+                STOP
+            </button>
+
+        <table>
+            <tr>
+                <td><label for="color">Color:</label></td>
+                <td>
+                    <select id="color" onChange="changeColor()">
+                        <option value="#2980B9">Blue</option>
+                        <option value="#E74C3C">Red</option>
+                        <option value="#27AE60">Green</option>
+                        <option value="#9B59B6">Amethyst</option>
+                        <option value="#F1C40F">Yellow</option>
+                    </select>
+                    <span> 
+                        <a href="http://designmodo.github.io/Flat-UI/">designmodo</a>
+                    </span>                
+                </td>
+            </tr>
+            <tr>
+                <td><label for="WPM">Speed:</td>
+                <td>
+                    <select id="WPM">
+                        <option value="100">100 WPM</option>
+                        <option value="200">200 WPM</option>
+                        <option value="300">300 WPM</option>
+                        <option value="400" selected>400 WPM</option>
+                        <option value="500">500 WPM</option>
+                        <option value="600">600 WPM</option>
+                        <option value="700">700 WPM</option>
+                        <option value="800">800 WPM</option>
+                        <option value="900">900 WPM</option>
+                        <option value="1000">1000 WPM</option>
+                        <option value="1500">1500 WPM</option>
+                        <option value="2000">2000 WPM</option>
+                        <option value="2500">2500 WPM</option>
+                        <option value="5000">5000 WPM</option>
+                        <option value="10000">10000 WPM</option>
+                    </select>
+                </td>
+            <tr>
+                <td><label for="book">Text:</td>
+                <td>
+                    <select name="book" id="book" onChange="pickBook()" >
+                        <option value="genesis1">
+                            The Holy Bible, Genesis Ch. 1
+                        </option>
+                        {% if book %}
+                        <option value="user" selected>
+                            {{title}}
+                        </option>
+                        {% endif %}
+                        <option value="other">
+                            Add your own...
+                        </option>
+                    </select>
+                </td>
+        </table>
+        </nav>
+        <form method="post" id="text" hidden="hidden">
+            <textarea name="text" placeholder="Paste text..."></textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script src='../static/books.js'></script>
+    {{book | safe}}
+    <script src='../static/reader.js'></script>
+
+</body>
+
+</html>
