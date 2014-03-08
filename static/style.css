@@ -62,11 +62,11 @@ body {
 }
 
 #center, tr:first-child td:first-child, tr:first-child select {
-    color: #2980B9;
+    color: #E74C3C;
 }
 
 tr:first-child select {
-    border-color: #2980B9;
+    border-color: #E74C3C;
 }
 
 #center {
