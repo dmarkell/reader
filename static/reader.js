@@ -31,6 +31,10 @@ function updateReader(left, center, right) {
     document.getElementById('right').innerHTML = right;
 }
 
+String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
 function streamWords(i) {
     if (streamWords.running) {
 
@@ -42,14 +46,22 @@ function streamWords(i) {
         var i = i || 0;
         
         var WPM = document.getElementById('WPM').value;
-        var millis = 60/WPM*1000;
+        
 
         if (i >= words.length) {
             toggleControls();
             return;
         };
-        
+
         var word = words[i];
+        var pause = function(){
+            if (i > 0 && words[i-1].endsWith(".")) {
+                return 2 * 60/WPM*1000;
+            } else {
+                return 60/WPM*1000;;
+            };
+        }()
+        
 
         setTimeout(
             function() {
@@ -73,7 +85,7 @@ function streamWords(i) {
                 }
                 updateReader(left, center, right);
                 streamWords(i + 1);
-            }, millis);
+            }, pause);
     } else {
         updateReader('Pic', 'k', '&nbsp;a text.');
     }
