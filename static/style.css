@@ -135,6 +135,7 @@ nav, input[type="submit"] {
 table {
     border-collapse: collapse;
     margin-top: 10px;
+    border: thin solid black;
 }
 
 td {
@@ -158,7 +159,6 @@ select, input {
     color: black;
     font-family: inherit;
 }
-
 
 input[type="submit"] {
     display: block;
@@ -222,5 +222,11 @@ select:disabled {
     }
     #left {
         width: 55px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    select:last-child {
+        width: 220px;
     }
 }
