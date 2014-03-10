@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="wrapper">
+        
         <div class="reader">
             <div class="window">
                 <div class="spike top"></div>
@@ -22,7 +23,7 @@
             <button id="stopper" onclick="stop()" disabled="disabled">
                 STOP
             </button>
-
+        {% if title %}<div class="title" id="title">{{title}}</div>{% endif %}
         <table>
             <tr>
                 <td><label for="color">Color:</label></td>
@@ -60,6 +61,7 @@
                         <option value="10000">10000 WPM</option>
                     </select>
                 </td>
+            </tr>
             <tr>
                 <td><label for="book">Text:</td>
                 <td>
@@ -69,7 +71,7 @@
                         </option>
                         {% if book %}
                         <option value="user" selected>
-                            {{title}}
+                            {{label}}
                         </option>
                         {% endif %}
                         <option value="other">
@@ -77,10 +79,11 @@
                         </option>
                     </select>
                 </td>
+            </tr>
         </table>
         </nav>
         <form method="post" id="text" hidden="hidden">
-            <textarea name="text" placeholder="Paste text..."></textarea>
+            <textarea name="text" placeholder="Paste text or url..."></textarea>
             <input type="submit" value="Submit">
         </form>
     </div>

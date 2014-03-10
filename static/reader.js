@@ -2,13 +2,17 @@ function pickBook(e) {
     var book_name = document.getElementById('book').value;
     var box = document.getElementById("text");
     var starter = document.getElementById("starter");
+    var title = document.getElementById("title");
 
     if (book_name === "other") {
         box.removeAttribute('hidden');
         starter['disabled'] = 'disabled';
+    } else if ( book_name == "user") {
+        if (title) { title.removeAttribute('hidden'); };
     } else {
         box['hidden'] = 'hidden'
         starter.removeAttribute('disabled');
+        if (title) { title['hidden'] = 'hidden'; }
     }
 }
 

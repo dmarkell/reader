@@ -3,9 +3,14 @@ import json
 import logging
 import os
 import re
+import urllib
+import urllib2
 import webapp2
 
 from google.appengine.api import urlfetch
+
+# Boilerpipe Removal and Fulltext Extraction, (c) http://www.kohlschutter.com/
+ENDPOINT = "http://boilerpipe-web.appspot.com/extract?"
 
 # Template utils
 template_dir = os.getcwd() + '/templates'
@@ -33,25 +38,37 @@ class Reader(Handler):
     def post(self):
         
         self.params = dict(book="")
-        self.url = self.request.get('url')
         self.text = self.request.get('text').strip()
 
-        if self.url:
-            corpus = urlfetch.fetch(ENDPOINT + params).content
-            # TODO
-        
+        if self.text.startswith('http://'):
+            params = "url={}&output=json".format(self.text) # not urlencoded?
+            try:
+                response = urlfetch.fetch(ENDPOINT + params)
+                data = json.loads(response.content)['response']
+                text = data['content']
+                title = data['title']
+                self.params['title'] = title
+                if text:
+                    self.text = text
+                else:
+                    self.params['title'] = 'No content found.'
+                    self.text = None
+            except:
+                self.params['title'] = 'Error accessing url.'
+                self.text = None
+
         if self.text:
             text = re.sub('\s+', ' ', self.text)
-            title = u"\"{}...\"".format(text[:28])
+            label = u"\"{}...\"".format(text[:28])
             words = text.split(" ")
             for ix, word in enumerate(words):
                 if len(word) > 15:
-                    words[ix] = word[15:]
-                    words.insert(ix, u"{}-".format(word[:15]))
+                    words[ix] = word[10:]
+                    words.insert(ix, u"{}-".format(word[:10]))
             text = u" ".join(words)
             text = json.dumps(text)
             insert = "<script>books['user']={}</script>".format(text)
-            self.params['title'] = title
+            self.params['label'] = label
             self.params['book'] = insert
 
         self.render("reader.html", **self.params)

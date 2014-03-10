@@ -16,6 +16,7 @@ footer {
     color: #7F8C8D;
 }
 
+
 body {
     background: linear-gradient(#abcdef, #ecf0f1);
     font-weight: bold;
@@ -44,19 +45,24 @@ a:hover {
     text-decoration: underline;
 }
 
-
-
 .wrapper {
-    width: 80%;
+    width: 565px;
     margin: 10% auto 0;
     text-align: center;
 }
 
-.reader {
+.title, .reader {
     background-color: #ecf0f1;
     border-radius: 10px;
+}
+
+.title {
+    margin-top: 10px;
+    padding: 10px 5px;
+}
+
+.reader {
     margin: 0 auto;
-    width: 565px; /* this determines how big the word can be */
     padding: 10px 0 10px;
 }
 
@@ -207,9 +213,9 @@ select:disabled {
     .wrapper {
         width: 90%
     }
-    .reader {
-        width: 100%;
-    }
+    /*.reader {
+        width: 90%;
+    }*/
     body {
         font-size: 0.9em;
     }
