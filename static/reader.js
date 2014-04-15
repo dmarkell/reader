@@ -39,19 +39,11 @@ String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
-function streamWords(i) {
+function streamWords(words, i) {
     if (streamWords.running) {
 
-        var book_name = document.getElementById('book').value;
-        var book = books[book_name];
-        
-        var words = book.split(/\s+/);
-        
-        var i = i || 0;
-        
         var WPM = document.getElementById('WPM').value;
         
-
         if (i >= words.length) {
             toggleControls();
             return;
@@ -62,9 +54,10 @@ function streamWords(i) {
             if (i > 0 && words[i-1].endsWith(".")) {
                 return 2 * 60/WPM*1000;
             } else {
-                return 60/WPM*1000;;
+                return 60/WPM*1000;
             };
         }()
+        var pause = 60/WPM*1000;
         
 
         setTimeout(
@@ -88,7 +81,7 @@ function streamWords(i) {
                     right = word.slice(4);
                 }
                 updateReader(left, center, right);
-                streamWords(i + 1);
+                streamWords(words, i + 1);
             }, pause);
     } else {
         updateReader('Pic', 'k', '&nbsp;a text.');
@@ -131,7 +124,10 @@ function toggleControls() {
 
 function start() {
     streamWords.running = true;
-    streamWords();
+    var book_name = document.getElementById('book').value;
+    var book = books[book_name];
+    var words = book.split(/\s+/);
+    streamWords(words, 0);
     toggleControls();
 }
 
